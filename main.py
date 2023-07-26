@@ -63,7 +63,50 @@ async def weather (ctx, *, location = None):
         temperature = weather_data["main"]["temp"]
         humidity = weather_data["main"]["humidity"]
         
-        await ctx.send (f"Here is the weather in {location}! \nStatus: {main_weather}\nTemperature: {temperature}°F\nHumidity: {humidity}%")
+        emoji = ""
+        voiceline = ""
+        if main_weather == "Clear":
+            emoji = ':sunny:'
+            voiceline = "Oh, it's sunny outside?! Yay! That means the perfect weather for my Boom-Boom adventures!"
+        elif main_weather == "Rain":
+            emoji = ':cloud_rain:'
+            voiceline = "Mwauhahaha, lucky all my new bombs are waterproof!"
+        elif main_weather == "Clouds":
+            emoji = ':cloud:'
+            voiceline = "Clouds, clouds, fluffy clouds! You know, they look just like the cotton candy I had at the Windblume Festival!"
+        elif main_weather == "Thunderstorm":
+            emoji = ':thunder_cloud_rain'
+            voiceline = "What'd I blow up!? ...Oh wait, it's just thunder and lightning. Phew."
+        elif main_weather == "Snow":
+            emoji = ':cloud_snow:'
+            voiceline = "I've got the bestest idea ever! Let's build a Dodoco snowman family! We'll start with Dodoco Dad, then Dodoco Mom, then Dodoco Baby, then... ah... ah.. achoo!"
+        elif main_weather == "Drizzle":
+            emoji = ':cloud_rain:'
+            voiceline = "Hey! Hey! Did you know? If I throw a bomb into the rain, when it explodes, it'll make a white rainbow! I call it a boom-bow!"
+        elif main_weather == "Mist":
+            emoji = ':fog:'
+            voiceline = "Misty days are like stepping into a dream! I'll use my Mystical Glitterbombs to make the mist shimmer and glow like stars in the sky!"
+        elif main_weather == "Haze":
+            emoji = ':fog:'
+            voiceline = "Haze makes me think of stories of Big Sister Jean's and Grandpa Varka's adventures! I would go on adventures too, but Big Sister Jean says I'm too young. Hmph."
+        elif main_weather == "Fog":
+            emoji = ':fog:'
+            voiceline = "Ehhh..?! Everything is so blurry! No.. No! It can't be! Am I already turning old?! Noooooo!"
+        elif main_weather == "Smoke":
+            emoji = ':fog:'
+            voiceline = "Heh, my bombs are way more smoky than this! I'll show you! :bomb: :boom:"
+        elif main_weather == "Squall":
+            emoji = ':wind_blowing_face:'
+            voiceline = "Dear Anemo God, please make Klee's bombs blow in the right direction and only blow up bad guys. The end."
+        elif main_weather == "Tornado":
+            emoji = ':cloud_tornado:'
+            voiceline = "Fwuah!! Did I accidently make the Anemo God mad with my bombs?! I'm sorry!!"
+        else:
+            emoji = ':cold_sweat:'
+            voiceline = "What's this? This is the first I've seen this type of weather!"
+        
+        await ctx.send (f"{emoji} Here is the weather in {location}! \nStatus: {main_weather}\nTemperature: {temperature}°F\nHumidity: {humidity}%")
+        await ctx.send (voiceline)
     elif response.status_code == server_code.NOT_FOUND:
         await ctx.send ("Uh oh! I couldn't find that location!")
     else: # response.status_code == server_code.INTERNAL_SERVER_ERROR
