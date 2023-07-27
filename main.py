@@ -1,5 +1,6 @@
 import nextcord
 import server_code
+import respond
 import os
 import requests
 import json
@@ -31,16 +32,16 @@ async def on_command_error (ctx, error):
 @client.command (aliases = ['hi', 'hey'])
 async def hello (ctx):
     await ctx.message.delete ()
-    await ctx.send ("Spark Knight Klee of the Knights of Favonius, reporting for duty!")
+    await ctx.send (respond.ohayo)
     
 @client.command ()
 async def logoff (ctx):
     if ctx.author.id == USER_ID:
         await ctx.message.delete ()
-        await ctx.send ("Spark Knight Klee of the Knights of Favonius, signing off!")
+        await ctx.send (respond.sayonara)
         await client.close ()
     else:
-        await ctx.send ("You do not have permission to use this command!")
+        await ctx.send (respond.no_perms)
         
 @client.command ()
 async def weather (ctx, *, location = None):
