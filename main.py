@@ -43,7 +43,11 @@ async def hello (ctx):
         await ctx.send (respond.not_running)
         
 
-#make a ping pong command later!    
+@client.command ()
+async def ping (ctx):
+    await ctx.send (respond.pong)
+    latency = f"Latency: {round (client.latency * 1000)}ms"
+    await ctx.send (latency)
 
 @client.command ()
 async def logon (ctx):
