@@ -21,7 +21,9 @@ client = commands.Bot (command_prefix = '\\', intents = intents)
 
 @client.event
 async def on_ready ():
+    global is_bot_running
     print ("KleeBot Status: Online")
+    is_bot_running = True
     
 @client.event
 async def on_command_error (ctx, error):
@@ -32,15 +34,39 @@ async def on_command_error (ctx, error):
     
 @client.command (aliases = ['hi', 'hey'])
 async def hello (ctx):
-    await ctx.message.delete ()
-    await ctx.send (respond.ohayo)
+    if is_bot_running:
+        # gonna purposely leave out ctx.message.delete () for funsies
+        await ctx.send (respond.hello) # might change this response later haha
+    else:
+        await ctx.send (respond.not_running)
+        
+
+#make a ping pong command later!    
+
+@client.command
+async def logon (ctx):
+    global is_bot_running # false by default
+    if ctx.author.id == USER_ID:
+        if not is_bot_running:
+            await ctx.message.delete ()
+            await ctx.send (respond.ohayo)
+            is_bot_running = True
+        else:
+            await ctx.send (respond.already_on)
+    else:
+        await ctx.send (respond.no_perms)
     
 @client.command ()
 async def logoff (ctx):
+    global is_bot_running
     if ctx.author.id == USER_ID:
-        await ctx.message.delete ()
-        await ctx.send (respond.sayonara)
-        await client.close ()
+        if is_bot_running:
+            await ctx.message.delete ()
+            await ctx.send (respond.sayonara)
+            await client.close ()
+            is_bot_running = False
+        else:
+            await ctx.send (respond.not_running)
     else:
         await ctx.send (respond.no_perms)
         
