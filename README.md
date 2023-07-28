@@ -18,4 +18,9 @@ KleeBot will not be used until the bot has a good amount of commands
 
 ## Purpose
 
-KleeBot's purpose is to help me learn how to work with different APIs and have a summer project to do.
+KleeBot's purpose is to help me learn how to work with different APIs, maybe apply some knowledge about DSA, and have a summer project to do.
+Also, the only language I know is C++, so this is a good opportunity to learn Python.
+
+## License
+
+No license! I don't really care if you want to clone my repository and take it for yourself. I can always make another bot and put a license on it.
