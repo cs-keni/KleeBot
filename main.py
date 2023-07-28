@@ -45,7 +45,7 @@ async def hello (ctx):
 
 #make a ping pong command later!    
 
-@client.command
+@client.command ()
 async def logon (ctx):
     global is_bot_running 
     if ctx.author.id == USER_ID:
