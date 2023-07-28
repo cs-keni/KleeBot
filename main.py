@@ -19,6 +19,8 @@ intents.members = True
 
 client = commands.Bot (command_prefix = '\\', intents = intents)
 
+is_bot_running = False
+
 @client.event
 async def on_ready ():
     global is_bot_running
@@ -45,7 +47,7 @@ async def hello (ctx):
 
 @client.command
 async def logon (ctx):
-    global is_bot_running # false by default
+    global is_bot_running 
     if ctx.author.id == USER_ID:
         if not is_bot_running:
             await ctx.message.delete ()
