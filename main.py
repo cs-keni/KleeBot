@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv ()
 
-USER_ID = os.getenv ("USER_ID")
+USER_ID = int (os.getenv ("USER_ID"))
 WEATHER_KEY = os.getenv ("WEATHER_KEY")
 BOT_TOKEN = os.getenv ("BOT_TOKEN")
 
