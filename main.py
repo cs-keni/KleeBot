@@ -6,6 +6,7 @@ import requests
 import json
 from weather_data import weather_voicelines, weather_emojis
 from nextcord.ext import commands
+from genshin_quotes import quotes
 from dotenv import load_dotenv
 
 load_dotenv ()
@@ -24,7 +25,7 @@ is_bot_running = False
 @client.event
 async def on_ready ():
     global is_bot_running
-    print ("KleeBot Status: Online")
+    print (respond.online)
     is_bot_running = True
     
 @client.event
@@ -49,7 +50,7 @@ async def ping (ctx):
     latency = f"Latency: {round (client.latency * 1000)}ms"
     await ctx.send (latency)
 
-@client.command ()
+@client.command () # something wrong with this command...
 async def logon (ctx):
     global is_bot_running 
     if ctx.author.id == USER_ID:
@@ -81,7 +82,7 @@ async def weather (ctx, *, location = None):
     # just in case if the user only does \weather instead of \weather <location>
     if location is None:
         await ctx.message.delete ()
-        await ctx.send ("Please specify a location! Here is an example usage: \\weather Mondstadt")
+        await ctx.send (respond.specify_location)
         return
     
     api_key = WEATHER_KEY
@@ -107,8 +108,8 @@ async def weather (ctx, *, location = None):
         await ctx.send (f"{emoji} Here is the weather in {location}! \nStatus: {main_weather}\nTemperature: {temperature}°F\nHumidity: {humidity}%")
         await ctx.send (voiceline)
     elif response.status_code == server_code.NOT_FOUND:
-        await ctx.send ("Uh oh! I couldn't find that location!")
+        await ctx.send (respond.location_not_found)
     else: # response.status_code == server_code.INTERNAL_SERVER_ERROR
-        await ctx.send ("Oh no! The weather API is down!")
+        await ctx.send (respond.weather_down)
     
 client.run (BOT_TOKEN)

@@ -6,3 +6,7 @@ unknown_weather = "What's this? This is the first I've seen this type of weather
 already_on = "KleeBot is already online!"
 not_running = "KleeBot is currently offline!"
 pong = "Pong!  :ping_pong:"
+online = "KleeBot Status: Online"
+specify_location = "Please specify a location! Here is an example usage: \\weather Mondstadt"
+location_not_found = "Uh oh! I couldn't find that location!"
+weather_down = "Oh no! The weather API is down!"
