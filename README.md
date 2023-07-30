@@ -4,7 +4,7 @@ KleeBot is a beginner-level discord bot inspired by Klee from Genshin Impact.
 
 ## Commands
 
-- Use '\commands' or '\help' to receive a list of commands
+- Use '\commands' to receive a list of commands
 * Note: commands will continually be added occasionally
 
 ## Usage
