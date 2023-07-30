@@ -71,7 +71,6 @@ async def logoff (ctx):
     global is_bot_running
     if ctx.author.id == USER_ID:
         if is_bot_running:
-            await ctx.message.delete ()
             await ctx.send (respond.sayonara)
             await client.close ()
             is_bot_running = False
@@ -120,7 +119,7 @@ async def quote (ctx):
     if is_bot_running:
         pdt = pytz.timezone ('America/Los_Angeles') # setting it to PDT since it's my timezone
         now = datetime.now (pdt)
-        today = now.date () # getting current date in PDT timezone
+        today = now.strftime ('%Y-%m-%d') #formatting it to YYYY-MM-DD to fix bug
         random.seed (today) # seeding the random number generator with the current date
         quote = random.choice (quotes)
         await ctx.send (quote)
