@@ -4,6 +4,7 @@ import respond
 import os
 import requests
 import json
+import random
 from weather_data import weather_voicelines, weather_emojis
 from nextcord.ext import commands
 from genshin_quotes import quotes
@@ -111,5 +112,13 @@ async def weather (ctx, *, location = None):
         await ctx.send (respond.location_not_found)
     else: # response.status_code == server_code.INTERNAL_SERVER_ERROR
         await ctx.send (respond.weather_down)
+        
+@client.command (aliases = ['qotd', 'get_quote', 'quote_of_the_day'])
+async def quote (ctx):
+    if is_bot_running:
+        quote = random.choice (genshin_quotes.quotes)
+        await ctx.send (quote)
+    else:
+        await ctx.send (respond.not_running)
     
 client.run (BOT_TOKEN)
