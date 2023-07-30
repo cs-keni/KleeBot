@@ -161,5 +161,11 @@ async def rock_paper_scissors (ctx, choice: str = None):
         await ctx.send (respond.rps_win)
     else:
         await ctx.send (respond.rps_lose)
+        
+@client.command (aliases = ['commandlist', 'command_list', 'cmds', 'cmdlist', 'cmd_list', 'cmd'])
+async def commands (ctx):
+    command_list = "\n".join ([f"{command} - {description}" for command, description in command_descriptions.items ()])
+    help_message = f"Here is the list of all the commands :hatching_chick::\n```\n{command_list}\n```"
+    await ctx.send (help_message)
     
 client.run (BOT_TOKEN)

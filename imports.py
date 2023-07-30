@@ -9,6 +9,7 @@ import pytz # noqa: F401
 from weather_data import weather_voicelines, weather_emojis # noqa: F401
 from nextcord.ext import commands # noqa: F401
 from genshin_quotes import quotes # noqa: F401
+from commands import command_descriptions # noqa: F401
 from datetime import datetime # noqa: F401
 from dotenv import load_dotenv # noqa: F401
 
