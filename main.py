@@ -8,6 +8,8 @@ BOT_TOKEN = os.getenv ("BOT_TOKEN")
 
 intents = nextcord.Intents.all ()
 intents.members = True
+intents.typing = False
+intents.presences = False
 
 client = commands.Bot (command_prefix = '\\', intents = intents)
 
@@ -120,5 +122,14 @@ async def roll_dice (ctx):
     number = random.randint (1, 6)
     dice_emoji = dice_faces[number - 1]
     await ctx.send (f"You rolled a {number}! {dice_emoji}")
+    
+@client.command (aliases = ['a', 'av'])
+async def avatar (ctx, member: nextcord.Member = None):
+    if not member:
+        member = ctx.author
+    avatar_url = member.avatar.url
+    embed = nextcord.Embed (title = f"{member.display_name}'s Avatar", color = nextcord.Color.blurple ())
+    embed.set_image (url = avatar_url)
+    await ctx.send (embed=embed)
     
 client.run (BOT_TOKEN)
