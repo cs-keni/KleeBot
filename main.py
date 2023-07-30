@@ -113,5 +113,12 @@ async def quote (ctx):
         await ctx.send (quote)
     else:
         await ctx.send (respond.not_running)
+        
+@client.command (aliases = ['dice', 'diceroll', 'roll', 'rolldice', 'dice_roll'])
+async def roll_dice (ctx):
+    dice_faces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
+    number = random.randint (1, 6)
+    dice_emoji = dice_faces[number - 1]
+    await ctx.send (f"You rolled a {number}! {dice_emoji}")
     
 client.run (BOT_TOKEN)
