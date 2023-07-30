@@ -121,7 +121,7 @@ async def roll_dice (ctx):
     dice_faces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
     number = random.randint (1, 6)
     dice_emoji = dice_faces[number - 1]
-    await ctx.send (f"You rolled a {number}! {dice_emoji}")
+    await ctx.send (f"You rolled a **{number}**! **{dice_emoji}**")
     
 @client.command (aliases = ['a', 'av'])
 async def avatar (ctx, member: nextcord.Member = None):
@@ -131,5 +131,11 @@ async def avatar (ctx, member: nextcord.Member = None):
     embed = nextcord.Embed (title = f"{member.display_name}'s Avatar", color = nextcord.Color.blurple ())
     embed.set_image (url = avatar_url)
     await ctx.send (embed=embed)
+    
+@client.command (aliases = ['coin', 'toss', 'flipcoin', 'coinflip', 'flip_coin', 'coin_flip'])
+async def flip (ctx):
+    coin_sides = ['Heads', 'Tails']
+    result = random.choice (coin_sides)
+    await ctx.send (f"The coin landed on **{result}**!")
     
 client.run (BOT_TOKEN)
