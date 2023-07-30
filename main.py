@@ -1,16 +1,4 @@
-import nextcord
-import server_code
-import respond
-import os
-import requests
-import json
-import random
-import pytz
-from weather_data import weather_voicelines, weather_emojis
-from nextcord.ext import commands
-from genshin_quotes import quotes
-from datetime import datetime
-from dotenv import load_dotenv
+from imports import *
 
 load_dotenv ()
 
