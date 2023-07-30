@@ -121,7 +121,7 @@ async def roll_dice (ctx):
     dice_faces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
     number = random.randint (1, 6)
     dice_emoji = dice_faces[number - 1]
-    await ctx.send (f"You rolled a **{number}**! **{dice_emoji}**")
+    await ctx.send (f"You rolled a **{number}**! {dice_emoji}")
     
 @client.command (aliases = ['a', 'av'])
 async def avatar (ctx, member: nextcord.Member = None):
@@ -137,5 +137,29 @@ async def flip (ctx):
     coin_sides = ['Heads', 'Tails']
     result = random.choice (coin_sides)
     await ctx.send (f"The coin landed on **{result}**!")
+    
+@client.command (aliases = ['rps', 'rockpaperscissors'])
+async def rock_paper_scissors (ctx, choice: str = None):
+    choices = ['rock', 'paper', 'scissors']
+    
+    if choice is None:
+        await ctx.send (respond.rps_choices)
+        return
+    
+    bot_choice = random.choice (choices)
+    choice = choice.lower ()
+    
+    if choice not in choices:
+        await ctx.send (respond.rps_invalid)
+        return
+    await ctx.send (f"You chose **{choice}**!")
+    await ctx.send (f"I chose **{bot_choice}**!")
+    
+    if choice == bot_choice:
+        await ctx.send (respond.rps_tie)
+    elif (choice == 'rock' and bot_choice == 'scissors') or (choice == 'paper' and bot_choice == 'rock') or (choice == 'scissors' and bot_choice == 'paper'):
+        await ctx.send (respond.rps_win)
+    else:
+        await ctx.send (respond.rps_lose)
     
 client.run (BOT_TOKEN)
