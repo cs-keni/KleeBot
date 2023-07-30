@@ -116,7 +116,7 @@ async def weather (ctx, *, location = None):
 @client.command (aliases = ['qotd', 'get_quote', 'quote_of_the_day'])
 async def quote (ctx):
     if is_bot_running:
-        quote = random.choice (genshin_quotes.quotes)
+        quote = random.choice (quotes)
         await ctx.send (quote)
     else:
         await ctx.send (respond.not_running)
