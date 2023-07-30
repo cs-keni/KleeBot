@@ -5,9 +5,11 @@ import os
 import requests
 import json
 import random
+import pytz
 from weather_data import weather_voicelines, weather_emojis
 from nextcord.ext import commands
 from genshin_quotes import quotes
+from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv ()
@@ -116,6 +118,10 @@ async def weather (ctx, *, location = None):
 @client.command (aliases = ['qotd', 'get_quote', 'quote_of_the_day'])
 async def quote (ctx):
     if is_bot_running:
+        pdt = pytz.timezone ('America/Los_Angeles') # setting it to PDT since it's my timezone
+        now = datetime.now (pdt)
+        today = now.date () # getting current date in PDT timezone
+        random.seed (today) # seeding the random number generator with the current date
         quote = random.choice (quotes)
         await ctx.send (quote)
     else:
