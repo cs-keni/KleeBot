@@ -10,6 +10,7 @@ intents = nextcord.Intents.default ()
 intents.members = True
 intents.typing = False
 intents.presences = False
+intents.message_content = True
 
 client = commands.Bot (command_prefix = '\\', intents = intents)
 
