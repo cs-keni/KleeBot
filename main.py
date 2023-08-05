@@ -6,7 +6,7 @@ USER_ID = int (os.getenv ("USER_ID")) # need to use int () because getenv return
 WEATHER_KEY = os.getenv ("WEATHER_KEY")
 BOT_TOKEN = os.getenv ("BOT_TOKEN")
 
-intents = nextcord.Intents.all ()
+intents = nextcord.Intents.default ()
 intents.members = True
 intents.typing = False
 intents.presences = False
@@ -198,6 +198,12 @@ class Music (commands.Cog):
 
 # needed for Music cog to work        
 def setup (client):
-    client.add_cog (Music (client))    
+    client.add_cog (Music (client))
+    
+# load music cog
+if __name__ == '__main__':
+    initial_extensions = ['cogs.music']
+    for extension in initial_extensions:
+        client.load_extension (extension)
     
 client.run (BOT_TOKEN)
