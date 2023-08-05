@@ -8,5 +8,6 @@ command_descriptions = {
     "flipcoin" : "Flips a coin.",
     "rps" : "Plays rock, paper, scissors with the bot.",
     "help" : "You're looking at it right now!",
-    "join_channel" : "Joins the voice channel the user is in."
+    "join_channel" : "Joins the voice channel the user is in.",
+    "leave_channel" : "Leaves the voice channel the bot is in."
 }

@@ -176,7 +176,7 @@ class Music (commands.Cog):
     async def join_channel (self, ctx):
         # check if user is in voice channel
         if ctx.author.voice is None:
-            await ctx.send (respond.not_in_vc)
+            await ctx.send (respond.user_not_in_vc)
             return
         
         # join voice channel
@@ -185,6 +185,16 @@ class Music (commands.Cog):
             await ctx.voice_client.move_to (voice_channel)
         else:
             await voice_channel.connect ()
+            
+    @commands.command (aliases = ['l', 'leave'])
+    async def leave_channel (self, ctx):
+        #check if the bot is in voice channel
+        if ctx.voice_client is None:
+            await ctx.send (respond.bot_not_in_vc)
+            return
+        
+        # leave voice channel
+        await ctx.voice_client.disconnect ()
     
     
 client.run (BOT_TOKEN)
