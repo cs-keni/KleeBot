@@ -7,5 +7,6 @@ command_descriptions = {
     "avatar" : "Displays the avatar of a specified user.",
     "flipcoin" : "Flips a coin.",
     "rps" : "Plays rock, paper, scissors with the bot.",
-    "help" : "You're looking at it right now!"
+    "help" : "You're looking at it right now!",
+    "join_channel" : "Joins the voice channel the user is in."
 }

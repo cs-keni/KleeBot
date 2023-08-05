@@ -168,4 +168,23 @@ async def commands (ctx):
     help_message = f"Here is the list of all the commands :hatching_chick::\n```\n{command_list}\n```"
     await ctx.send (help_message)
     
+class Music (commands.Cog):
+    def __init__ (self, client):
+        self.client = client
+    
+    @commands.command (aliases = ['j', 'join'])
+    async def join_channel (self, ctx):
+        # check if user is in voice channel
+        if ctx.author.voice is None:
+            await ctx.send (respond.not_in_vc)
+            return
+        
+        # join voice channel
+        voice_channel = ctx.author.voice.channel
+        if ctx.voice_client is None:
+            await ctx.voice_client.move_to (voice_channel)
+        else:
+            await voice_channel.connect ()
+    
+    
 client.run (BOT_TOKEN)
