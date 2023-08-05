@@ -195,6 +195,9 @@ class Music (commands.Cog):
         
         # leave voice channel
         await ctx.voice_client.disconnect ()
-    
+
+# needed for Music cog to work        
+def setup (client):
+    client.add_cog (Music (client))    
     
 client.run (BOT_TOKEN)
