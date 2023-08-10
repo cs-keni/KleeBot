@@ -169,7 +169,7 @@ async def commands (ctx):
     help_message = f"Here is the list of all the commands :hatching_chick::\n```\n{command_list}\n```"
     await ctx.send (help_message)
     
-class Music (Cog):
+class Music (commands.cog):
     def __init__ (self, client):
         self.client = client
     
